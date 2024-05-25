@@ -39,8 +39,6 @@ document.head.appendChild(loadingStyle);
 var pathName = window.location.pathname;
 fetch("https://imdevlol.pythonanywhere.com/1" + pathName, {
     method: "GET",
-    mode: "cors",
-    credentials: "include",
     headers: {
         "Content-Type": "application/json"
     }
