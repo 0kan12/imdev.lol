@@ -1,4 +1,4 @@
-
+// Create a style element for body
 var bodyStyle = document.createElement('style');
 bodyStyle.id = 'bodyStyle';
 bodyStyle.textContent = `
@@ -8,12 +8,16 @@ bodyStyle.textContent = `
         justify-content: center;
         height: 100vh;
         margin: 0;
-        background-color: #111;
+        background-color: #a9bbd1;
         font-family: 'Roboto', sans-serif;
         color: white;
     }
 `;
 
+// Append the body style to the head
+document.head.appendChild(bodyStyle);
+
+// Create a style element for loading spinner
 var loadingStyle = document.createElement('style');
 loadingStyle.id = 'loadingStyle';
 loadingStyle.textContent = `
@@ -34,9 +38,21 @@ loadingStyle.textContent = `
         }
     }
 `;
-document.head.appendChild(bodyStyle);
+
+// Append the loading style to the head
 document.head.appendChild(loadingStyle);
+
+// Create an image element for loading image
+var loadingImage = document.createElement('img');
+loadingImage.id = 'loadingImage';
+loadingImage.src = 'https://cdn.imdev.lol/assets/logo.png'; // Replace 'path_to_your_image.gif' with your image path
+loadingImage.classList.add('loader');
+document.body.appendChild(loadingImage);
+
+// Get the pathname of the current URL
 var pathName = window.location.pathname;
+
+// Fetch data from the server
 fetch("https://imdevlol.pythonanywhere.com/1" + pathName, {
     method: "GET",
     headers: {
@@ -45,17 +61,27 @@ fetch("https://imdevlol.pythonanywhere.com/1" + pathName, {
 })
 .then(response => response.text())
 .then(data => {
-    var loader = document.getElementById('loader');
-    var body = document.querySelector('#bodyStyle');
+    // Get the loading image element
+    var loadingImage = document.getElementById('loadingImage');
+
+    // Check if the data is a URL path
     if (data.startsWith("/")) {
+        // Redirect to the fetched URL
         window.location.href = data;
     } else {
-        loader.parentNode.removeChild(loader);
-        body.parentNode.removeChild(body)
+        // Remove the loading image
+        loadingImage.parentNode.removeChild(loadingImage);
+
+        // Remove the body style
+        var body = document.querySelector('#bodyStyle');
+        body.parentNode.removeChild(body);
+
+        // Replace the document body with the fetched data
         document.body.innerHTML = data;
     }
 })
 .catch(error => {
+    // Log and handle errors
     console.error(error);
     console.error("Invalid URL path name");
 });
