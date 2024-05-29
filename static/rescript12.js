@@ -17,31 +17,6 @@ bodyStyle.textContent = `
 // Append the body style to the head
 document.head.appendChild(bodyStyle);
 
-// Create a style element for loading spinner
-var loadingStyle = document.createElement('style');
-loadingStyle.id = 'loadingStyle';
-loadingStyle.textContent = `
-    .loader {
-        border: 8px solid #3498db;
-        border-radius: 50%;
-        border-top: 8px solid #f1c40f;
-        width: 50px;
-        height: 50px;
-        animation: spin 1s linear infinite;
-    }
-    @keyframes spin {
-        0% {
-            transform: rotate(0deg);
-        }
-        100% {
-            transform: rotate(360deg);
-        }
-    }
-`;
-
-// Append the loading style to the head
-document.head.appendChild(loadingStyle);
-
 // Create an image element for loading image
 var loadingImage = document.createElement('img');
 loadingImage.id = 'loadingImage';
