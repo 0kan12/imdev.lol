@@ -12,6 +12,27 @@ bodyStyle.textContent = `
         font-family: 'Roboto', sans-serif;
         color: white;
     }
+    .loader {
+        animation: spin 1s linear infinite, zoom 1s ease-in-out infinite alternate;
+        max-width: 100px; /* Adjust the size as needed */
+        max-height: 100px; /* Adjust the size as needed */
+    }
+    @keyframes spin {
+        0% {
+            transform: rotate(0deg);
+        }
+        100% {
+            transform: rotate(360deg);
+        }
+    }
+    @keyframes zoom {
+        0% {
+            transform: scale(1);
+        }
+        100% {
+            transform: scale(0.5); /* Adjust the size as needed */
+        }
+    }
 `;
 
 // Append the body style to the head
